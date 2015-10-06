@@ -1,6 +1,7 @@
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.JComponent;
+import java.awt.Color;
 
 /**
  * Class that creates instances of the classes that comprise the cityscape and delegates drawing the
@@ -11,13 +12,32 @@ import javax.swing.JComponent;
  */
 public class CityscapeComponent extends JComponent
 {
-    // define the objects in your Cityscape as instance variables
-    // ...
+    double time;
+   
+    Sun s1;
+    Sun s2;
+    Sun s3;
+    Moon m;
+    Building b;
     
     
     
-    // define the CityscapeComponent contructor and intiailize all instance variables
-    // ...
+    
+    CityscapeComponent()
+    {
+        this.time = 0;
+    }
+    
+    CityscapeComponent(double time, String moonPhase)
+    {
+        this.time = time;
+        s1 = new Sun(-7.5*Math.abs(this.time-12)+90);
+        s2 = new Sun(-7.5*Math.abs(this.time-6)+90);
+        s3 = new Sun(-7.5*Math.abs(this.time-18)+90);
+        m = new Moon(7.5*Math.abs(this.time-12)-90, moonPhase);
+        b = new Building(100 ,-100 , 15);
+    }
+    
     
     
     /**
@@ -29,11 +49,11 @@ public class CityscapeComponent extends JComponent
     {
         Graphics2D g2 = (Graphics2D) g;
         
-        // invoke the draw method on each object in your Cityscape
-        // ...
-        
-        
+        s1.draw(g2);
     }
+        
+        
+  
     
     /**
      * Animate the cityscape by updating the objects such that they appear to be animated when they are next drawn.

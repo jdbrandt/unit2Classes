@@ -1,5 +1,8 @@
 import javax.swing.JFrame;
-
+import java.util.Scanner;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import javax.swing.JComponent;
 /**
  * Class that contains the main method for the program and creates the frame containing the component.
  * 
@@ -24,18 +27,26 @@ public class CityscapeViewer
         frame.setTitle("Cityscape");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        // use the Scanner class to prompt the user for some configurable aspect of the cityscape
-        // ...
+        Scanner s = new Scanner(System.in);
+        System.out.print("Enter the hour (in 24 hour time): ");
+        double time = s.nextDouble();
+        System.out.print("Enter the minutes of the hour: ");
+        time+=s.nextDouble()/60d;
+        
+        System.out.print("Enter the moon phase: ");
+        String moonPhase = s.next();
+        
         
         
         
         // a frame contains a single component; create the Cityscape component and add it to the frame
-        CityscapeComponent component = new CityscapeComponent( /* pass the user-specified value */ );
+        CityscapeComponent component = new CityscapeComponent(time, moonPhase);
         frame.add(component);
         
         // make the frame visible which will result in the paintComponent method being invoked on the
         //  component.
         frame.setVisible(true);
+
         
         // animate the cityscape
         for( int seconds = 0; seconds < ANIMATION_TIME_IN_SECONDS; seconds++ )
