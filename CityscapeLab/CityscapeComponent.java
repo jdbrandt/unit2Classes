@@ -2,6 +2,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.JComponent;
 import java.awt.Color;
+import java.awt.geom.Ellipse2D;
 
 /**
  * Class that creates instances of the classes that comprise the cityscape and delegates drawing the
@@ -31,10 +32,10 @@ public class CityscapeComponent extends JComponent
     CityscapeComponent(double time, String moonPhase)
     {
         this.time = time;
-        s1 = new Sun(-7.5*Math.abs(this.time-12)+90);
-        s2 = new Sun(-7.5*Math.abs(this.time-6)+90);
-        s3 = new Sun(-7.5*Math.abs(this.time-18)+90);
-        m = new Moon(7.5*Math.abs(this.time-12)-90, moonPhase);
+        s1 = new Sun(Math.toRadians(-7.5*Math.abs(this.time-12)+90));
+        s2 = new Sun(Math.toRadians(-7.5*Math.abs(this.time-6)+90));
+        s3 = new Sun(Math.toRadians(-7.5*Math.abs(this.time-18)+90));
+        m = new Moon(Math.toRadians(7.5*Math.abs(this.time-12)-90), moonPhase);
         b = new Building(100 ,-100 , 15);
     }
     
@@ -49,7 +50,10 @@ public class CityscapeComponent extends JComponent
     {
         Graphics2D g2 = (Graphics2D) g;
         
+        
+        
         s1.draw(g2);
+        
     }
         
         

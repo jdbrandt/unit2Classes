@@ -13,14 +13,16 @@ import java.awt.Color;
 public class Sun
 {
     /** description of instance variable x (add comment for each instance variable) */
+    
     // X value of sun instance
     private double x;
     // Y value of sun instance
     private double y;
     // Center angle measure of sun instance
+    
     private double theta;
-    // Actual representation of Sun
-    private Ellipse2D.Double sun;
+    // Actual representation of Sun passed in radians
+    
 
     /**
      * Default constructor for objects of class Sun
@@ -28,16 +30,20 @@ public class Sun
     public Sun()
     {
         this.theta = 0;
-        this.x = 100*Math.cos(this.getTheta());
-        this.y = -100*Math.sin(this.getTheta());
-        this.sun = new Ellipse2D.Double(x-25, y-25, 50, 50);
+        
+        this.x = 300*Math.cos(this.getTheta());
+        this.y = 800-(300*Math.sin(this.getTheta())+200);
+        
     }
     
+    //Theta must be in radians
     public Sun(double theta)
     {
         this.theta = theta;
-        this.x = 100*Math.cos(theta);
-        this.y = -100*Math.sin(theta);
+        
+        this.x = 300*Math.cos(theta);
+        this.y = 800-(300*Math.sin(theta)+200);
+        
        
     }
     
@@ -97,7 +103,7 @@ public class Sun
     /**
      * Mutator method for x, given theta
      * @post x>=0
-     * @param theta value to calculate new x
+     * @param theta value to calculate new x0
      */
     public void setX(double theta)
     {
@@ -117,10 +123,12 @@ public class Sun
      * Accessor method for sun for drawing
      * @return this.sun
      */
-    public void draw(Graphics2D g)
+    public void draw(Graphics2D g2)
     {
-        g.setColor(Color.YELLOW);
-        g.draw(this.sun);
+        Ellipse2D.Double sun = new Ellipse2D.Double(0, 510, 50, 50);
+        g2.setColor(Color.YELLOW);
+        g2.draw(sun);
+        g2.fill(sun);
     }
     
 
