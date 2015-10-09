@@ -21,6 +21,8 @@ public class CityscapeViewer
     public static void main(String[] args) throws InterruptedException
     {
         // create and configure the frame (window) for the program
+        System.out.print('\u000C'); 
+        
         JFrame frame = new JFrame();
         
         frame.setSize(800 /* x */, 600 /* y */);
