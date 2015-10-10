@@ -32,10 +32,10 @@ public class CityscapeComponent extends JComponent
     CityscapeComponent(double time, String moonPhase)
     {
         this.time = time;
-        s1 = new Sun(Math.toRadians(-7.5*Math.abs(this.time-12)+90));
-        s2 = new Sun(Math.toRadians(-7.5*Math.abs(this.time-6)+90));
-        s3 = new Sun(Math.toRadians(-7.5*Math.abs(this.time-18)+90));
-        m = new Moon(Math.toRadians(7.5*Math.abs(this.time-12)-90), moonPhase);
+        s1 = new Sun(15*time-90);
+        s2 = new Sun(15*time);
+        s3 = new Sun(15*time-180);
+        m = new Moon(15*time-270, moonPhase);
         b = new Building(100 ,-100 , 15);
     }
     
@@ -53,6 +53,8 @@ public class CityscapeComponent extends JComponent
         
         
         s1.draw(g2);
+        s2.draw(g2);
+        s3.draw(g2);
         
     }
         
