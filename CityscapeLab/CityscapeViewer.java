@@ -11,8 +11,8 @@ import javax.swing.JComponent;
  */
 public class CityscapeViewer
 {
-    // the cityscape will be animated for 60 seconds
-    static final int ANIMATION_TIME_IN_SECONDS = 60;
+    // changed to make it loop better
+    static final int ANIMATION_TIME_IN_SECONDS = 10000;
    
     /**
      * main method for the program which creates and configures the frame for the program
@@ -33,16 +33,10 @@ public class CityscapeViewer
         System.out.print("Enter the hour (in 24 hour time): ");
         double time = s.nextDouble();
         System.out.print("Enter the minutes of the hour: ");
-        time+=s.nextDouble()/60d;
-        
-        System.out.print("Enter the moon phase: ");
-        String moonPhase = s.next();
-        
-        
-        
+        time+=s.nextDouble()/60d;       
         
         // a frame contains a single component; create the Cityscape component and add it to the frame
-        CityscapeComponent component = new CityscapeComponent(time, moonPhase);
+        CityscapeComponent component = new CityscapeComponent(time);
         frame.add(component);
         
         // make the frame visible which will result in the paintComponent method being invoked on the
@@ -55,7 +49,8 @@ public class CityscapeViewer
         for( int seconds = 0; seconds < ANIMATION_TIME_IN_SECONDS; seconds++ )
         {
             component.nextFrame();
-            Thread.sleep( 1000 );
+            //makes it loop much more seamlessly
+            Thread.sleep(10);
         }
         
         

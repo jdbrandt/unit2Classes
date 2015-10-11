@@ -3,6 +3,7 @@ import java.awt.Graphics2D;
 import javax.swing.JComponent;
 import java.awt.Color;
 import java.awt.geom.Ellipse2D;
+import java.awt.Rectangle;
 
 /**
  * Class that creates instances of the classes that comprise the cityscape and delegates drawing the
@@ -18,25 +19,19 @@ public class CityscapeComponent extends JComponent
     Sun s1;
     Sun s2;
     Sun s3;
-    Moon m;
     Building b;
+    Car c;
+    Background ba;
     
-    
-    
-    
-    CityscapeComponent()
-    {
-        this.time = 0;
-    }
-    
-    CityscapeComponent(double time, String moonPhase)
+    CityscapeComponent(double time)
     {
         this.time = time;
         s1 = new Sun(15*time-90);
         s2 = new Sun(15*time);
         s3 = new Sun(15*time-180);
-        m = new Moon(15*time-270, moonPhase);
-        b = new Building(100 ,-100 , 15);
+        b = new Building();
+        c = new Car();
+        ba = new Background();
     }
     
     
@@ -49,13 +44,14 @@ public class CityscapeComponent extends JComponent
     public void paintComponent(Graphics g)
     {
         Graphics2D g2 = (Graphics2D) g;
-        
-        
-        
+        //background MUST BE DRAWN FIRST
+        ba.draw(g2); 
         s1.draw(g2);
         s2.draw(g2);
         s3.draw(g2);
-        
+        b.draw(g2);
+        c.draw(g2);
+       
     }
         
         
@@ -67,11 +63,16 @@ public class CityscapeComponent extends JComponent
      */
     public void nextFrame()
     {
-        // update the objects in the cityscape so they are animated
-        // ...
-        
-        
-        
+        //animates the sun
+        this.time+=.01;
+        if (this.time>=24)
+        {
+            //infinite looping
+            this.time=0;
+        }
+        s1 = new Sun(15*time-90);
+        s2 = new Sun(15*time);
+        s3 = new Sun(15*time-180);
         // request that the Java Runtime repaints this component by invoking its paintComponent method
         repaint();
     }
